@@ -32,7 +32,7 @@ function scanDir(dirPath) {
         var dateString = parts[1];
         dateString=dateString.substring(0,4)+"-"+dateString.substring(4,6)+"-"+dateString.substring(6,8)+"T00:00:00.000Z"
         var date = new Date(dateString);
-        if(date>lastDate&&Number.parseInt(parts[2])>=lastId)
+        if(date>lastDate&&Number.parseInt(parts[2])>lastId)
         {
           bigger=path.join(dirPath, entry.name);
           lastDate=date;
@@ -46,7 +46,6 @@ function scanDir(dirPath) {
 }
 console.log(config.logPath);
 
-console.log(filePath);
 // Эта функция вызывается для каждой новой строки
 let firstDate = null;
 
@@ -161,6 +160,7 @@ function handleNewLine(line) {
 
   const date = (new Date());
     const trimmed = new Date(Math.floor(date.getTime() / 1000) * 1000);
+    console.log(line);
   if(line.includes('терпит урон')||line.includes('You hit ')) {
     const damage = line.split(' ').find(x=>isNumeric(x));
     let dmg= Number.parseInt(damage);
@@ -222,5 +222,7 @@ fs.readFile(configPath, 'utf8', (err, data) => {
   }
   config = JSON.parse(data);
   scanDir(config.logPath)
+  
+console.log(filePath);
   app.whenReady().then(createWindow);
 });
