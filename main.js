@@ -161,7 +161,7 @@ function handleNewLine(line) {
 
   const date = (new Date());
     const trimmed = new Date(Math.floor(date.getTime() / 1000) * 1000);
-  if(line.includes('терпит урон')) {
+  if(line.includes('терпит урон')||line.includes('You hit')) {
     const damage = line.split(' ').find(x=>isNumeric(x));
     let dmg= Number.parseInt(damage);
     if(true)
