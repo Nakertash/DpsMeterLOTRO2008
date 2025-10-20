@@ -161,7 +161,7 @@ function handleNewLine(line) {
 
   const date = (new Date());
     const trimmed = new Date(Math.floor(date.getTime() / 1000) * 1000);
-  if(line.includes('терпит урон')||line.includes('You hit')) {
+  if(line.includes('терпит урон')||line.includes('You hit ')) {
     const damage = line.split(' ').find(x=>isNumeric(x));
     let dmg= Number.parseInt(damage);
     if(true)
@@ -212,6 +212,9 @@ const diffSeconds = Math.abs(d2 - d1) / 1000;
   //console.log(amount,diffSeconds,(amount/diffSeconds), damageWithTime[0]);
   win.webContents.send('update-data', Math.floor(amount/diffSeconds));
 }
+fs.writeFile("version.txt", "3", 'utf8', (err) => {
+  
+})
 fs.readFile(configPath, 'utf8', (err, data) => {
   if (err) {
     console.error('Ошибка при чтении файла:', err);
