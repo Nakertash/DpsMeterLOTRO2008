@@ -32,7 +32,7 @@ function scanDir(dirPath) {
         var dateString = parts[1];
         dateString=dateString.substring(0,4)+"-"+dateString.substring(4,6)+"-"+dateString.substring(6,8)+"T00:00:00.000Z"
         var date = new Date(dateString);
-        if(date>lastDate&&Number.parseInt(parts[2])>lastId)
+        if(date>=lastDate&&Number.parseInt(parts[2])>lastId)
         {
           bigger=path.join(dirPath, entry.name);
           lastDate=date;
